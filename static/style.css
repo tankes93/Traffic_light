@@ -1,0 +1,1153 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background container */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Day background */
+.day-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        #87CEEB 0%, 
+        #98D8E8 25%, 
+        #B8E6F0 50%, 
+        #D0F2FF 75%, 
+        #E6F9FF 100%);
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+}
+
+.background-container.night .day-background {
+    opacity: 0;
+}
+
+/* Night background */
+.night-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        #0B1426 0%, 
+        #1B2951 25%, 
+        #2C3E50 50%, 
+        #34495E 75%, 
+        #4A6741 100%);
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.background-container.night .night-background {
+    opacity: 1;
+}
+
+/* Clouds */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    opacity: 0.7;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+}
+
+.cloud1 {
+    width: 140px;
+    height: 55px;
+    top: 20%;
+    left: -140px;
+    animation: float-cloud1 25s infinite linear;
+}
+
+.cloud1::before {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    left: 15px;
+}
+
+.cloud1::after {
+    width: 85px;
+    height: 55px;
+    top: -20px;
+    right: 15px;
+}
+
+.cloud2 {
+    width: 110px;
+    height: 42px;
+    top: 15%;
+    left: -110px;
+    animation: float-cloud2 30s infinite linear;
+    animation-delay: -5s;
+}
+
+.cloud2::before {
+    width: 55px;
+    height: 55px;
+    top: -28px;
+    left: 20px;
+}
+
+.cloud2::after {
+    width: 70px;
+    height: 42px;
+    top: -14px;
+    right: 20px;
+}
+
+.cloud3 {
+    width: 160px;
+    height: 65px;
+    top: 30%;
+    left: -160px;
+    animation: float-cloud3 35s infinite linear;
+    animation-delay: -10s;
+}
+
+.cloud3::before {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    left: 25px;
+}
+
+.cloud3::after {
+    width: 95px;
+    height: 65px;
+    top: -25px;
+    right: 25px;
+}
+
+.cloud4 {
+    width: 125px;
+    height: 48px;
+    top: 25%;
+    left: -125px;
+    animation: float-cloud4 28s infinite linear;
+    animation-delay: -15s;
+}
+
+.cloud4::before {
+    width: 62px;
+    height: 62px;
+    top: -30px;
+    left: 18px;
+}
+
+.cloud4::after {
+    width: 75px;
+    height: 48px;
+    top: -16px;
+    right: 18px;
+}
+
+.cloud5 {
+    width: 150px;
+    height: 60px;
+    top: 10%;
+    left: -150px;
+    animation: float-cloud5 32s infinite linear;
+    animation-delay: -20s;
+}
+
+.cloud5::before {
+    width: 75px;
+    height: 75px;
+    top: -38px;
+    left: 25px;
+}
+
+.cloud5::after {
+    width: 90px;
+    height: 60px;
+    top: -23px;
+    right: 25px;
+}
+
+@keyframes float-cloud1 {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 140px)); }
+}
+
+@keyframes float-cloud2 {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 110px)); }
+}
+
+@keyframes float-cloud3 {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 160px)); }
+}
+
+@keyframes float-cloud4 {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 125px)); }
+}
+
+@keyframes float-cloud5 {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 150px)); }
+}
+
+/* Sun */
+.sun {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500);
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.3);
+    animation: sun-glow 3s ease-in-out infinite alternate;
+}
+
+.sun::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border-radius: 50%;
+    background: 
+        conic-gradient(from 0deg, 
+            transparent 0deg, 
+            rgba(255, 215, 0, 0.1) 10deg, 
+            transparent 20deg,
+            rgba(255, 215, 0, 0.1) 30deg,
+            transparent 40deg,
+            rgba(255, 215, 0, 0.1) 50deg,
+            transparent 60deg,
+            rgba(255, 215, 0, 0.1) 70deg,
+            transparent 80deg,
+            rgba(255, 215, 0, 0.1) 90deg,
+            transparent 100deg,
+            rgba(255, 215, 0, 0.1) 110deg,
+            transparent 120deg,
+            rgba(255, 215, 0, 0.1) 130deg,
+            transparent 140deg,
+            rgba(255, 215, 0, 0.1) 150deg,
+            transparent 160deg,
+            rgba(255, 215, 0, 0.1) 170deg,
+            transparent 180deg,
+            rgba(255, 215, 0, 0.1) 190deg,
+            transparent 200deg,
+            rgba(255, 215, 0, 0.1) 210deg,
+            transparent 220deg,
+            rgba(255, 215, 0, 0.1) 230deg,
+            transparent 240deg,
+            rgba(255, 215, 0, 0.1) 250deg,
+            transparent 260deg,
+            rgba(255, 215, 0, 0.1) 270deg,
+            transparent 280deg,
+            rgba(255, 215, 0, 0.1) 290deg,
+            transparent 300deg,
+            rgba(255, 215, 0, 0.1) 310deg,
+            transparent 320deg,
+            rgba(255, 215, 0, 0.1) 330deg,
+            transparent 340deg,
+            rgba(255, 215, 0, 0.1) 350deg,
+            transparent 360deg);
+    animation: sun-rays 8s linear infinite;
+}
+
+@keyframes sun-glow {
+    0% { 
+        box-shadow: 
+            0 0 20px rgba(255, 215, 0, 0.4),
+            0 0 40px rgba(255, 215, 0, 0.2);
+    }
+    100% { 
+        box-shadow: 
+            0 0 40px rgba(255, 215, 0, 0.8),
+            0 0 80px rgba(255, 215, 0, 0.4);
+    }
+}
+
+@keyframes sun-rays {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Stars */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #eee, transparent),
+        radial-gradient(1px 1px at 200px 90px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 240px 50px, #fff, transparent),
+        radial-gradient(1px 1px at 280px 10px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 320px 80px, #eee, transparent),
+        radial-gradient(1px 1px at 360px 40px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 80px 20px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 120px 60px, #eee, transparent),
+        radial-gradient(1px 1px at 180px 15px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 220px 85px, #fff, transparent),
+        radial-gradient(1px 1px at 300px 65px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 350px 25px, #eee, transparent),
+        radial-gradient(1px 1px at 70px 60px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 110px 25px, #fff, transparent),
+        radial-gradient(1px 1px at 150px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 190px 45px, #eee, transparent),
+        radial-gradient(1px 1px at 230px 20px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 270px 75px, #fff, transparent),
+        radial-gradient(1px 1px at 310px 35px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 50px 45px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 170px 55px, #eee, transparent),
+        radial-gradient(2px 2px at 210px 15px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 250px 65px, #fff, transparent),
+        radial-gradient(2px 2px at 290px 25px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 330px 70px, #eee, transparent),
+        radial-gradient(2px 2px at 370px 50px, rgba(255,255,255,0.6), transparent);
+    background-repeat: repeat;
+    background-size: 400px 100px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    25% { opacity: 0.8; }
+    50% { opacity: 1; }
+    75% { opacity: 0.6; }
+    100% { opacity: 0.4; }
+}
+
+/* Moon */
+.moon {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #F5F5DC, #E6E6FA);
+    box-shadow: 
+        0 0 20px rgba(245, 245, 220, 0.5),
+        inset -10px -10px 0 rgba(0, 0, 0, 0.1);
+    animation: moon-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes moon-glow {
+    0% { box-shadow: 0 0 20px rgba(245, 245, 220, 0.3), inset -10px -10px 0 rgba(0, 0, 0, 0.1); }
+    100% { box-shadow: 0 0 40px rgba(245, 245, 220, 0.7), inset -10px -10px 0 rgba(0, 0, 0, 0.1); }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-label {
+    display: block;
+    width: 120px;
+    height: 60px;
+    background: linear-gradient(135deg, #87CEEB 0%, #4A90E2 50%, #2E86AB 100%);
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 52px;
+    height: 52px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-slider {
+    transform: translateX(56px);
+}
+
+/* Day background elements inside toggle */
+.toggle-label::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 24px;
+    height: 24px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.toggle-label::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 16px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+/* Additional cloud */
+.toggle-label .cloud-small {
+    position: absolute;
+    top: 18px;
+    right: 25px;
+    width: 12px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.toggle-label .cloud-small::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+.toggle-label .cloud-small::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: 2px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+/* Airplane */
+.toggle-label .airplane {
+    position: absolute;
+    top: 35px;
+    right: 12px;
+    width: 20px;
+    height: 8px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.toggle-label .airplane::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 12px;
+    height: 2px;
+    background: #666;
+    border-radius: 2px;
+}
+
+.toggle-label .airplane::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 8px;
+    height: 6px;
+    background: #666;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Night mode elements */
+.toggle-checkbox:checked + .toggle-label::before {
+    top: 15px;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    background: #E6E6FA;
+    box-shadow: 
+        0 0 15px rgba(230, 230, 250, 0.4),
+        inset -4px -4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.toggle-checkbox:checked + .toggle-label::after {
+    opacity: 0;
+}
+
+.toggle-checkbox:checked + .toggle-label .cloud-small {
+    opacity: 0;
+}
+
+.toggle-checkbox:checked + .toggle-label .airplane {
+    opacity: 0;
+}
+
+/* Stars for night mode */
+.toggle-label .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.toggle-label .star1 {
+    top: 12px;
+    left: 20px;
+}
+
+.toggle-label .star2 {
+    top: 25px;
+    left: 15px;
+}
+
+.toggle-label .star3 {
+    top: 18px;
+    left: 35px;
+}
+
+.toggle-label .star4 {
+    top: 35px;
+    left: 25px;
+}
+
+.toggle-label .star5 {
+    top: 42px;
+    left: 18px;
+}
+
+.toggle-checkbox:checked + .toggle-label .star {
+    opacity: 1;
+    animation: star-twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes star-twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.toggle-icon {
+    font-size: 0;
+    position: absolute;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+/* Error Overlay */
+.error-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.error-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.error-content {
+    background: linear-gradient(145deg, #ff4444, #cc1111);
+    border: 3px solid #ff6666;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 
+        0 0 50px rgba(255, 68, 68, 0.8),
+        0 0 100px rgba(255, 68, 68, 0.4),
+        inset 0 4px 20px rgba(255, 255, 255, 0.1);
+    animation: error-pulse 1s ease-in-out infinite alternate;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.error-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: error-shake 0.5s ease-in-out infinite alternate;
+}
+
+.error-title {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.error-message {
+    color: #ffeeee;
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.error-sub {
+    color: #ffcccc;
+    font-size: 14px;
+    margin: 0 0 25px 0;
+}
+
+.error-timer {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.error-progress-bar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.error-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffffff, #ffcccc);
+    border-radius: 4px;
+    width: 0%;
+    animation: error-countdown 3s linear forwards;
+}
+
+@keyframes error-pulse {
+    0% {
+        box-shadow: 
+            0 0 30px rgba(255, 68, 68, 0.6),
+            0 0 60px rgba(255, 68, 68, 0.3),
+            inset 0 4px 20px rgba(255, 255, 255, 0.1);
+    }
+    100% {
+        box-shadow: 
+            0 0 50px rgba(255, 68, 68, 0.8),
+            0 0 100px rgba(255, 68, 68, 0.5),
+            inset 0 4px 20px rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes error-shake {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(5px); }
+}
+
+@keyframes error-countdown {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.traffic-light-system {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    z-index: 10;
+}
+
+.traffic-pole {
+    width: 30px;
+    height: 400px;
+    background: linear-gradient(to right, #1a1a1a, #2a2a2a, #1a1a1a);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.4);
+    border-radius: 15px 15px 0 0;
+}
+
+.traffic-light-container {
+    position: relative;
+    z-index: 3;
+    margin-bottom: 150px;
+}
+
+.traffic-light-housing {
+    background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+    width: 160px;
+    height: 380px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.6),
+        inset 0 3px 6px rgba(255,255,255,0.05);
+    border: 2px solid #333;
+    z-index: 2;
+}
+
+/* Protector shields */
+.protector-shield {
+    position: absolute;
+    width: 200px;
+    height: 80px;
+    left: -20px;
+    background: linear-gradient(145deg, #2a2a2a, #0f0f0f);
+    z-index: 2;
+    box-shadow: 
+        0 8px 20px rgba(0,0,0,0.4),
+        inset 0 2px 4px rgba(255,255,255,0.05);
+    clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+}
+
+.protector-red {
+    top: 20px;
+}
+
+.protector-yellow {
+    top: 130px;
+}
+
+.protector-green {
+    top: 240px;
+}
+
+.protector-shield::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 25px;
+    right: 25px;
+    height: calc(100% - 10px);
+    background: linear-gradient(145deg, #333, #111);
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.light-section {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+}
+
+#redLight {
+    top: 30px;
+}
+
+#yellowLight {
+    top: 140px;
+}
+
+#greenLight {
+    top: 250px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 6px 12px rgba(0,0,0,0.4),
+        0 3px 10px rgba(0,0,0,0.3);
+}
+
+/* Default (off) states */
+.red-light {
+    background: radial-gradient(circle at 30% 30%, #441111, #220808);
+    border: 2px solid #331111;
+}
+
+.yellow-light {
+    background: radial-gradient(circle at 30% 30%, #444411, #222208);
+    border: 2px solid #333311;
+}
+
+.green-light {
+    background: radial-gradient(circle at 30% 30%, #114411, #082208);
+    border: 2px solid #113311;
+}
+
+/* Active (on) states */
+.red-light.on {
+    background: radial-gradient(circle at 30% 30%, #ff4444, #cc1111);
+    border: 2px solid #ff6666;
+    box-shadow: 
+        0 0 40px rgba(255, 68, 68, 0.8),
+        0 0 80px rgba(255, 68, 68, 0.4),
+        inset 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.yellow-light.on {
+    background: radial-gradient(circle at 30% 30%, #ffdd44, #cc9911);
+    border: 2px solid #ffee66;
+    box-shadow: 
+        0 0 40px rgba(255, 221, 68, 0.8),
+        0 0 80px rgba(255, 221, 68, 0.4),
+        inset 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.green-light.on {
+    background: radial-gradient(circle at 30% 30%, #44ff44, #11cc11);
+    border: 2px solid #66ff66;
+    box-shadow: 
+        0 0 40px rgba(68, 255, 68, 0.8),
+        0 0 80px rgba(68, 255, 68, 0.4),
+        inset 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Light reflection effect */
+.circle::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.circle.on::before {
+    opacity: 0.9;
+    background: rgba(255,255,255,0.4);
+}
+
+.circle:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .traffic-light-housing {
+        width: 160px;
+        height: 400px;
+    }
+    
+    .protector-shield {
+        width: 200px;
+        height: 100px;
+        left: -20px;
+    }
+    
+    .protector-yellow {
+        top: 130px;
+    }
+    
+    .protector-green {
+        top: 250px;
+    }
+    
+    .light-section {
+        width: 120px;
+        height: 120px;
+        left: 20px;
+    }
+    
+    #yellowLight {
+        top: 140px;
+    }
+    
+    #greenLight {
+        top: 260px;
+    }
+    
+    .circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .traffic-pole {
+        width: 16px;
+        height: 280px;
+    }
+    
+    .theme-toggle {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .toggle-label {
+        width: 100px;
+        height: 50px;
+        border-radius: 25px;
+    }
+    
+    .toggle-slider {
+        width: 42px;
+        height: 42px;
+        top: 4px;
+        left: 4px;
+    }
+    
+    .toggle-checkbox:checked + .toggle-label .toggle-slider {
+        transform: translateX(46px);
+    }
+    
+    .toggle-label::before {
+        width: 20px;
+        height: 20px;
+        top: 7px;
+        left: 7px;
+    }
+    
+    .toggle-checkbox:checked + .toggle-label::before {
+        width: 16px;
+        height: 16px;
+        top: 12px;
+        left: 12px;
+    }
+    
+    .moon {
+        width: 60px;
+        height: 60px;
+        top: 10%;
+        right: 8%;
+    }
+    
+    .sun {
+        width: 40px;
+        height: 40px;
+        top: 8%;
+        right: 10%;
+    }
+    
+    /* Adjust clouds for mobile */
+    .cloud1, .cloud2, .cloud3, .cloud4, .cloud5 {
+        transform: scale(0.7);
+    }
+    
+    /* Error overlay responsive - tablet */
+    .error-content {
+        padding: 35px 25px;
+        margin: 15px;
+        min-width: 280px;
+    }
+    
+    .error-icon {
+        font-size: 55px;
+    }
+    
+    .error-title {
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .traffic-light-housing {
+        width: 140px;
+        height: 360px;
+    }
+    
+    .protector-shield {
+        width: 180px;
+        height: 90px;
+    }
+    
+    .protector-yellow {
+        top: 120px;
+    }
+    
+    .protector-green {
+        top: 230px;
+    }
+    
+    .light-section {
+        width: 100px;
+        height: 100px;
+        left: 20px;
+    }
+    
+    #yellowLight {
+        top: 130px;
+    }
+    
+    #greenLight {
+        top: 240px;
+    }
+    
+    .circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .traffic-pole {
+        width: 14px;
+        height: 250px;
+    }
+    
+    .theme-toggle {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .toggle-label {
+        width: 90px;
+        height: 45px;
+        border-radius: 22px;
+    }
+    
+    .toggle-slider {
+        width: 37px;
+        height: 37px;
+        top: 4px;
+        left: 4px;
+    }
+    
+    .toggle-checkbox:checked + .toggle-label .toggle-slider {
+        transform: translateX(41px);
+    }
+    
+    .toggle-label::before {
+        width: 18px;
+        height: 18px;
+        top: 6px;
+        left: 6px;
+    }
+    
+    .toggle-checkbox:checked + .toggle-label::before {
+        width: 14px;
+        height: 14px;
+        top: 10px;
+        left: 10px;
+    }
+    
+    .toggle-label::after {
+        width: 12px;
+        height: 6px;
+        top: 10px;
+        right: 12px;
+    }
+    
+    .toggle-label .cloud-small {
+        width: 10px;
+        height: 5px;
+        top: 15px;
+        right: 20px;
+    }
+    
+    .toggle-label .airplane {
+        width: 16px;
+        height: 6px;
+        top: 30px;
+        right: 10px;
+    }
+    
+    .moon {
+        width: 50px;
+        height: 50px;
+        top: 8%;
+        right: 5%;
+    }
+    
+    .sun {
+        width: 35px;
+        height: 35px;
+        top: 6%;
+        right: 8%;
+    }
+    
+    /* Further scale down clouds for small screens */
+    .cloud1, .cloud2, .cloud3, .cloud4, .cloud5 {
+        transform: scale(0.5);
+    }
+    
+    /* Error overlay responsive */
+    .error-content {
+        padding: 30px 20px;
+        margin: 20px;
+        min-width: 250px;
+    }
+    
+    .error-icon {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .error-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .error-message {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .error-sub {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+}

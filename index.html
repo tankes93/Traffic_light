@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body onload="initializeTrafficLight()">
+    <!-- Background container -->
+    <div id="background-container" class="background-container day">
+        <!-- Day background with clouds -->
+        <div class="day-background">
+            <div class="sun"></div>
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="cloud cloud4"></div>
+            <div class="cloud cloud5"></div>
+        </div>
+        
+        <!-- Night background with stars -->
+        <div class="night-background">
+            <div class="stars"></div>
+            <div class="moon"></div>
+        </div>
+    </div>
+    
+    <!-- Day/Night Toggle -->
+    <div class="theme-toggle">
+        <input type="checkbox" id="themeToggle" class="toggle-checkbox">
+        <label for="themeToggle" class="toggle-label">
+            <div class="cloud-small"></div>
+            <div class="airplane"></div>
+            <div class="star star1"></div>
+            <div class="star star2"></div>
+            <div class="star star3"></div>
+            <div class="star star4"></div>
+            <div class="star star5"></div>
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+    
+    <div class="traffic-light-system">
+        <!-- Traffic pole -->
+        <div class="traffic-pole"></div>
+        
+        <!-- Traffic light container -->
+        <div class="traffic-light-container">
+            <!-- Protector shields (behind housing) -->
+            <div class="protector-shield protector-red"></div>
+            <div class="protector-shield protector-yellow"></div>
+            <div class="protector-shield protector-green"></div>
+            
+            <div class="traffic-light-housing">
+                <!-- Red light -->
+                <div id="redLight" class="light-section">
+                    <div id="red" class="circle red-light" onclick="startTransitionToRed()"></div>
+                </div>
+                
+                <!-- Yellow light -->
+                <div id="yellowLight" class="light-section">
+                    <div id="yellow" class="circle yellow-light" onclick="toggleBlinking()"></div>
+                </div>
+                
+                <!-- Green light -->
+                <div id="greenLight" class="light-section">
+                    <div id="green" class="circle green-light" onclick="startTransitionToGreen()"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Error Overlay -->
+    <div id="errorOverlay" class="error-overlay">
+        <div class="error-content">
+            <div class="error-icon">⚠️</div>
+            <h2 class="error-title">SYSTEM ERROR</h2>
+            <p class="error-message">Too many rapid inputs detected!</p>
+            <p class="error-sub">Please wait before clicking again.</p>
+            <div class="error-timer">
+                <div class="error-progress-bar">
+                    <div class="error-progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>
