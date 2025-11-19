@@ -139,16 +139,6 @@ os.system(f"gpioset gpiochip0 {GPIO_PIN}=0")  # Turn LED off
 
 Global state tracking ensures only one light configuration is active at any time.
 
-## Future Improvements
-
-• **Pedestrian crossing integration** — Add pedestrian signals and crosswalk buttons
-• **Automatic cycling mode** — Auto-rotate through light sequences
-• **Traffic sensor simulation** — Adaptive timing based on simulated traffic flow
-• **Mobile-responsive UI** — Enhanced touch controls for smartphones/tablets
-• **WebSocket support** — Real-time bidirectional communication
-• **Configuration panel** — Adjust timing, GPIO pins, and behavior via web UI
-• **Multi-intersection control** — Coordinate multiple traffic lights
-
 ## WiFi Auto-Connect (Embedded Deployment)
 
 For standalone operation on embedded Linux systems:
@@ -166,13 +156,4 @@ The system will automatically connect to WiFi and start the Flask server on boot
 
 This project is licensed under the MIT License — see the `LICENSE` file for details.
 
-## Author
 
-**Tejas Lanke**
-- GitHub: [@tankes93](https://github.com/tankes93)
-- LinkedIn: [tejas-lanke](https://www.linkedin.com/in/tejas-lanke)
-- Location: Berlin, Germany
-
----
-
-*Built with ❤️ for embedded systems and IoT enthusiasts*
