@@ -1,8 +1,8 @@
 # Traffic Light Control System
 
-An interactive web-based traffic light controller with realistic German-standard traffic signal transitions. Built with Flask and designed for GPIO-controlled hardware (Raspberry Pi or similar embedded systems).
+An interactive web-based traffic light controller with realistic German-standard traffic signal transitions. Built with Flask and designed for GPIO-controlled hardware (Raspberry Pi ).
 
-![Traffic Light Demo](screenshot.png)
+https://github.com/user-attachments/assets/fc5f2d30-bb96-494d-891e-1abe717fd100
 
 ## Project Overview
 
